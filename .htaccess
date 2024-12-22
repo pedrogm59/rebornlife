@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+</IfModule>
+
+ErrorDocument 500 /erreur
+ErrorDocument 404 /
+ErrorDocument 403 /erreur
