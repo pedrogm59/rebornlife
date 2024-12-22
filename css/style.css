@@ -1,0 +1,16 @@
+[onclick]:hover { cursor : pointer; }
+
+.input-group > .select2-container--bootstrap {
+    width : auto;
+    flex  : 1 1 auto;
+}
+
+.input-group > .select2-container--bootstrap .select2-selection--single {
+    height      : 100%;
+    line-height : inherit;
+    padding     : 0.5rem 1rem;
+}
+
+thead {
+    background-color: #1e2537;
+}
