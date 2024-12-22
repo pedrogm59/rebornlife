@@ -1,0 +1,42 @@
+<script src="https://www.arma3lifefrance.fr/forum/js/jquery/jquery-1.11.0.min.js"></script>
+
+<style>
+    #TopVotersTable { width : 100%; border-collapse : collapse;}
+
+    #TopVotersTable td:first-child, #TopVotersTable th:first-child { border-right : 1px black solid;}
+
+    #TopVotersTable th { border-bottom : 2px black solid; padding-bottom : 0.2em; text-align : center; }
+
+    #TopVotersTable td { padding : 0.2em; text-align : center;}
+
+    #TopVotersTable tbody tr:nth-of-type(1) { color : goldenrod; font-weight : bold; text-shadow : 0 0 0.7em gold;}
+
+    #TopVotersTable tbody tr:nth-of-type(2) { color : silver; font-weight : bold; }
+
+    #TopVotersTable tbody tr:nth-of-type(3) { color : #614e1a; font-weight : bold; }
+
+    #TopVotersLink { text-align : center; margin-bottom : 1em; }
+</style>
+<div id="TopVotersLink">
+    <a href="https://arma3.top-serveurs.net/vote/arma-3-life-france" target="_blank">Voter ici pour le serveur !</a>
+</div>
+<table id="TopVotersTable">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Votes</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<script>
+    let limitTopVoters = 5;
+    $.getJSON("https://api.top-serveurs.net/v1/servers/D1AXOPWYMR/players-ranking", function (data) {
+        if (data.code !== 200 || !data.success) return;
+        for (let i in data.players) {
+            if (i >= limitTopVoters) return;
+            $("#TopVotersTable tbody").append("<tr><td>" + data.players[i].playername + "</td><td>" + data.players[i].votes + "</td></tr>");
+        }
+    });
+    $('#TopVotersLink a').attr("href", $('#TopVotersLink a').attr("href") + "?pseudo=" + $('strong.accountUsername').html());
+</script>
